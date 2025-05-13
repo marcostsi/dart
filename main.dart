@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main() {
 // 2.2 Tipos e Operadores
 // 1. Declare uma variável inteira para armazenar a idade de uma pessoa e atribua o valor 28.
@@ -89,6 +91,7 @@ void main() {
   } else {
     print('Menor de idade');
   }
+
 // 17. Dada uma variável nota, use if/else para exibir "Aprovado" se a nota for maior ou igual a 7, "Recuperação" se for entre 5 e 6.9, e "Reprovado" se for menor que 5.
   double nota = 7;
 
@@ -99,10 +102,12 @@ void main() {
   } else {
     print("Reprovado");
   }
+
 // 18. Leia um número inteiro e use o operador ternário para exibir "Par" ou "Ímpar".
   int numero = 7; 
   String resultado3 = (numero % 2 == 0) ? 'Par' : 'Ímpar';
   print(resultado3);
+
 // 19. Dado um número de 1 a 7, use switch/case para imprimir o nome do dia correspondente (1 = Domingo, 2 = Segunda, ...).
   int numero4 = 3;
   switch(numero4) {
@@ -130,6 +135,7 @@ void main() {
     default:
       print('Número inválido. Digite um número de 1 a 7.');
   }
+
 // 20. Receba três números inteiros e utilize estruturas de seleção para exibir o maior deles.
   int valor1 = 10;
   int valor2 = 25; 
@@ -150,6 +156,7 @@ void main() {
   for (int i = 10; i >= 1; i--){
     print(i);
   }
+
 // 22. Some e exiba todos os números pares de 1 a 100 usando um loop.
   int soma1 = 0;
   for (int i = 1; i <= 100; i++) {
@@ -159,5 +166,92 @@ void main() {
     }
   }
   print('A soma dos números ímpares de 1 a 100 é: $soma1');
+
+// 23. Peça um número e mostre sua tabuada de 1 a 10 usando for ou while.
+  stdout.write('Digite um número para ver a tabuada: ');
+  int numero5 = int.parse(stdin.readLineSync()!);
+  print('\nTabuada do $numero:');
+  for (int i = 1; i < 10; i++) {
+    print('$numero5 x $i = ${numero5 * i}');
+  }
+
+  stdout.write('Digite um número para ver a tabuada: ');
+  int numero6 = int.parse(stdin.readLineSync()!);
+  int i = 1;
+  print('\nTabuada do $numero:');
+  while (i <= 10) {
+    print('$numero6 x $i = ${numero6 * i}');
+    i++;
+  }
+
+// 24. Leia números do usuário até que ele digite um valor negativo, e então exiba quantos números foram digitados.
+  int contador = 0;
+  while (true) {
+    stdout.write('Digite um número (negativo para sair): ');
+    int numero7 = int.parse(stdin.readLineSync()!);
+
+    if (numero7 < 0) {
+      break;
+    }
+    contador++;
+  }
+  print('\nVocê digitou $contador número(s) positivos.');
+  
+// 25. Dada uma lista de nomes, use um for-in para imprimir cada nome em letras maiúsculas.
+  List<String> nomes = ['ana', 'bruno', 'carla'];
+  for (var nome in nomes) {
+    print(nome.toUpperCase());
+  }
+// 2.4 Funções
+// 26. Crie uma função chamada calcularAreaRetangulo que recebe dois parâmetros obrigatórios, base e altura, e retorna a área do retângulo.
+  double calcularAreaRetangulo (double base, double altura) {
+    return base * altura;
+  }
+  print(calcularAreaRetangulo(2,3));
+
+// 27. Implemente uma função chamada apresentarPessoa que recebe o nome (obrigatório) e a idade (opcional posicional). Se a idade não for informada, apenas imprima o nome; caso contrário, imprima também a idade.
+  void apresentarPessoa(String nome, [int? idade]) {
+    if (idade == null)  {
+      print("Nome: $nome");
+    } else {
+      print("Nome: $nome, Idade: $idade");
+    }
+  }
+  apresentarPessoa("Maria", 25);
+
+// 28. Escreva uma função chamada enviarEmail que recebe um destinatário obrigatório e dois parâmetros nomeados opcionais: assunto (com valor padrão "Sem assunto") e corpo (com valor padrão "Mensagem vazia"). Imprima uma mensagem simulando o envio do e-mail.
+    void enviarEmail(String destinatario, {String assunto = "Sem assunto", String corpo = "Mensagem vazia"}) {
+      print("Enviado email para: $destinatario");
+      print("Assunto: $assunto");
+      print("Corpo: $corpo");
+    }
+    enviarEmail("marcosplira12@gmail.com");
+
+// 29. Considere o seguinte código de execução: print(somarLista([2, 4, 6, 8])); Implemente a função somarLista que recebe uma lista de inteiros e retorna a soma de todos os elementos.
+  int somarLista(List<int> numeros8) {
+    int soma = 0;
+    for (int numero in numeros8) {
+      soma += numero;
+    }
+    return soma;
+  }
+  print(somarLista([2, 4, 6, 8]));
+
+// 30. Pesquise o que é uma função anônima no dart e crie uma função anônima atribuída a uma variável chamada saudacao que recebe um nome e imprime "Olá, [nome]!" quando chamada.
+// Função anônima como uma função sem nome. Ela é criada para ser usada de forma rápida e simples, sem a necessidade de dar um nome a ela, como em funções tradicionais.
+  var saudacao = (String nomedaVariavel) {
+    print("Olá, $nomedaVariavel");
+  };
+  saudacao("João");
+// 2.5 Coleções
+// 31. Crie uma lista de inteiros chamada numeros com os valores ``. Adicione o número 40 ao final da lista e imprima o terceiro elemento (índice 2).
+  List<int> numeros9 = [10, 20, 30];
+  numeros9.add(40);
+  print(numeros9[2]);
+
+// 32. Dada a lista var frutas = ['maçã', 'banana', 'laranja', 'banana'], remova todas as ocorrências de 'banana' e imprima a lista resultante.
+  var frutas = ['maça', 'banana', 'laranja', 'banana'];
+  frutas.removeWhere((fruta) => fruta == 'banana');
+  print(frutas);
 }
 
