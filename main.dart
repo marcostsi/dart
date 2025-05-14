@@ -27,8 +27,8 @@ void main() {
 // 6. Usando as variáveis do exercício anterior, calcule o resto da divisão de a por b.
   int c = 10;
   int d = 3;
-  int divisao = c % d;
-  print(divisao);
+  int resto = c % d;
+  print(resto);
 
 // 7. Crie uma variável double para o valor de uma compra e aplique um desconto de 10% usando operadores aritméticos.
   double valorCompra = 100;
@@ -158,19 +158,19 @@ void main() {
   }
 
 // 22. Some e exiba todos os números pares de 1 a 100 usando um loop.
-  int soma1 = 0;
+  int somaPares = 0;
   for (int i = 1; i <= 100; i++) {
     if (i % 2 != 0) {
-      soma1 += i;
+      somaPares += i;
       print(i);
     }
   }
-  print('A soma dos números ímpares de 1 a 100 é: $soma1');
+  print('A soma dos números pares de 1 a 100 é: $somaPares');
 
 // 23. Peça um número e mostre sua tabuada de 1 a 10 usando for ou while.
   stdout.write('Digite um número para ver a tabuada: ');
   int numero5 = int.parse(stdin.readLineSync()!);
-  print('\nTabuada do $numero:');
+  print('\nTabuada do $numero5:');
   for (int i = 1; i < 10; i++) {
     print('$numero5 x $i = ${numero5 * i}');
   }
@@ -178,7 +178,7 @@ void main() {
   stdout.write('Digite um número para ver a tabuada: ');
   int numero6 = int.parse(stdin.readLineSync()!);
   int i = 1;
-  print('\nTabuada do $numero:');
+  print('\nTabuada do $numero6:');
   while (i <= 10) {
     print('$numero6 x $i = ${numero6 * i}');
     i++;
@@ -253,5 +253,37 @@ void main() {
   var frutas = ['maça', 'banana', 'laranja', 'banana'];
   frutas.removeWhere((fruta) => fruta == 'banana');
   print(frutas);
+
+// 33. Use o método map para transformar a lista `` em uma lista de strings no formato ['Número 1', 'Número 2', 'Número 3'].
+  var listaOriginal = [1, 2, 3, 4, 5];
+  var listaTexto = listaOriginal.map((numero) => 'Número $numero').toList();
+  print(listaTexto);
+  
+// 34. Crie um conjunto var letras = {'a', 'b', 'c'}. Tente adicionar 'a' novamente e verifique se o conjunto ainda contém 'a' após a operação.
+   var letras = {'a', 'b', 'c'};
+   letras.add('a');
+   print(letras.contains('a'));
+   print(letras);
+//  35. Dados os conjuntos set1 = {1, 2, 3} e set2 = {3, 4, 5}, calcule imprima a união e a interseção entre eles.
+  var set1 = {1, 2, 3};
+  var set2 = {3, 4, 5};
+  var uniao = set1.union(set2);
+  var intersecao = set1.intersection(set2);
+  print('União: $uniao' );
+  print('Interseção: $intersecao');
+
+// 36. Converta a lista `` em um Set para remover duplicatas e exiba o resultado.
+  var nomesComRepetidos = ['Ana', 'Carlos', 'Ana', 'Bruno', 'Carlos'];
+  var nomesSemRepetidos = nomesComRepetidos.toSet();
+  print(nomesSemRepetidos);
+
+// 37. Crie um mapa var pessoa = {'nome': 'Ana', 'idade': 25}. Adicione a chave 'cidade' com valor 'São Paulo' e atualize 'idade' para 26.
+  var pessoa = {
+    'nome': 'Ana',
+    'idade': 25
+    };
+    pessoa['cidade'] = 'São Paulo';
+    pessoa['idade'] = 26;
+    print(pessoa);
 }
 
