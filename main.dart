@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:collection';
 
 void main() {
 // 2.2 Tipos e Operadores
@@ -285,5 +286,65 @@ void main() {
     pessoa['cidade'] = 'São Paulo';
     pessoa['idade'] = 26;
     print(pessoa);
+
+// 38. Verifique se o mapa var produtos = {'celular': 1500, 'notebook': 3000} contém a chave 'tablet'. Se não existir, adicione-a com valor 1000.
+  var produtos = {
+    'celular': 150,
+    'notebook': 3000
+  };
+  if (!produtos.containsKey('tablet')) {
+    produtos['tablet'] = 1000;
+  }
+  print(produtos);
+
+// 39. Combine os mapas map1 = {'a': 1, 'b': 2} e map2 = {'c': 3} usando o operador de spread (...), resultando em {'a': 1, 'b': 2, 'c': 3}.
+  var map1 = {'a': 1, 'b': 2};
+  var map2 = {'c': 3};
+  var combinado = {...map1, ...map2};
+  print(combinado);
+
+// 40. Crie uma Queue chamada fila e adicione os elementos 'primeiro', 'segundo', 'terceiro'. Remova o primeiro elemento e imprima o resultado.
+  Queue<String> elementos = Queue<String>();
+  elementos.add('primeiro');
+  elementos.add('segundo');
+  elementos.add('terceiro');
+  print('Os elementos foram adicionado: $elementos');
+  String saida = elementos.removeFirst();
+  print('O elemento vai ser removido: $saida');
+
+// 41. Use addFirst para inserir 0 no início da fila Queue<int> fila = Queue.from() e removeLast para remover o último elemento.
+  Queue<int> fila = Queue.from([1, 2, 3, 4]);
+  fila.addFirst(0);
+  int ultimoValor = fila.removeLast();
+  print(ultimoValor);
+
+// 42. Converta a Queue fila = Queue.from() em uma lista e imprima o segundo elemento.
+  Queue<String> fila1 = Queue.from(['1', '2', '3', '4', '5']);
+  List<String> lista = fila1.toList();
+  var segundo = lista[1];
+  print(segundo);
+
+// 43. Defina uma classe Node que estende LinkedListEntry<Node> com um campo valor. Crie uma LinkedList<Node> e adicione três nós com valores 10, 20, 30.
+  var listadeElemento = LinkedList<Node>();
+  listadeElemento.add(Node(10));
+  listadeElemento.add(Node(20));
+  listadeElemento.add(Node(30));
+
+  for (var tarefa in listadeElemento) {
+    print('Tarefa ${tarefa.numero10}');
+  }
+// 44. Na LinkedList<Node> criada anteriormente, remova o nó com valor 20 usando unlink() e imprima os valores restantes.
+  listadeElemento.firstWhere((element) => element.numero10 == 20).unlink();
+  print(listadeElemento);
+
+// 45. Percorra a LinkedList<Node> usando um loop for-in e imprima cada valor multiplicado por 2.
+  for (var Node in listadeElemento) {
+    print('Lista de Elemento: ${Node.numero10 * 2}');
+  }
 }
+
+class Node extends LinkedListEntry<Node> {
+    final int numero10;
+    Node(this.numero10);
+  }
 
