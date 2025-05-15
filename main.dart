@@ -341,6 +341,11 @@ void main() {
   for (var Node in listadeElemento) {
     print('Lista de Elemento: ${Node.numero10 * 2}');
   }
+// 2.6 OO
+// 46. Crie uma classe Livro com as propriedades titulo, autor e anoPublicacao. Adicione um método exibirDetalhes() que retorna uma string formatada como "Título: [titulo], Autor: [autor], Ano: [ano]". Exemplo de uso:
+// var livro = Livro('Dom Casmurro', 'Machado de Assis', 1899); print(livro.exibirDetalhes()); // Título: Dom Casmurro, Autor: Machado de Assis, Ano: 1899
+var livro = Livro('Dom Casmurro', 'Machado de Assis', 1899); 
+print(livro.exibirDetalhes()); 
 }
 
 class Node extends LinkedListEntry<Node> {
@@ -348,3 +353,13 @@ class Node extends LinkedListEntry<Node> {
     Node(this.numero10);
   }
 
+class Livro {
+  String titulo;
+  String autor;
+  int anoPublicacao;
+  Livro(this.titulo, this.autor, this.anoPublicacao);
+
+  String exibirDetalhes() {
+    return 'Livro: $titulo, Autor: $autor, Ano de Pulbicacao: $anoPublicacao';
+  }
+}
