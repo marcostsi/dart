@@ -346,6 +346,84 @@ void main() {
 // var livro = Livro('Dom Casmurro', 'Machado de Assis', 1899); print(livro.exibirDetalhes()); // Título: Dom Casmurro, Autor: Machado de Assis, Ano: 1899
 var livro = Livro('Dom Casmurro', 'Machado de Assis', 1899); 
 print(livro.exibirDetalhes()); 
+
+// 47. Crie uma classe Contador com uma propriedade privada _valor (inicializada em 0) e um método público incrementar() que aumenta _valor em 1. Adicione um método resetar() que define _valor para 0.
+  var contador1 = Contador1();
+  contador1.incrementar();
+  contador1.incrementar();
+  print(contador1.valor);
+
+  contador1.resetar();
+  print(contador1.valor);
+
+// 48. Crie uma classe Aluno com as propriedades nome e matricula. Implemente um construtor padrão que inicializa ambas as propriedades e um construtor nomeado Aluno.semMatricula que define matricula como 'Não informada'. Exemplo de uso:
+// var aluno1 = Aluno('Ana', '20240001');
+// var aluno2 = Aluno.semMatricula('Bruno');
+ var aluno1 = Aluno('Ana', '20240001');
+ print(aluno1);
+ var aluno2 = Aluno.semMatricula('Bruno');
+ print(aluno2);
+
+// 49. Crie uma classe Produto com as propriedades nome e preco. Use um construtor para inicializar nome como obrigatório e preco com valor padrão 0.0 se não for fornecido.
+  var produto1 = Produto("Banana", 45.99);
+  var produto2 = Produto("Banana é bom.");
+
+  print("Produto 1: ${produto1.nomedoProduto}, Preço: ${produto1.preco}");
+  print("Produto 2: ${produto2.nomedoProduto}, Preço: ${produto2.preco}");
+
+// 50. Crie uma classe Veiculo com as propriedades marca e velocidadeMaxima. Em seguida, crie uma subclasse Carro que adiciona a propriedade quantidadePortas. Exemplo de uso: // var carro = Carro('Toyota', 200, 4); // print(carro.quantidadePortas); // 4 
+  var carro = Carro('Toyota', 300, 4);
+  print(carro.marca);
+  print(carro.velocidadeMaxima);
+  print(carro.quantidadePortas);
+}
+
+class Veiculo {
+  String marca;
+  int velocidadeMaxima;
+
+  Veiculo(this.marca, this.velocidadeMaxima);
+}
+
+class Carro extends Veiculo {
+  int quantidadePortas;
+
+  Carro(String marca, int velocidadeMaxima, this.quantidadePortas) : super(marca, velocidadeMaxima);
+}
+
+
+class Produto {
+  String nomedoProduto;
+  double preco;
+
+  Produto(this.nomedoProduto, [this.preco = 0.0]);
+}
+
+class Aluno {
+  String nome;
+  String matricula;
+
+  Aluno(this.nome, this.matricula);
+
+ Aluno.semMatricula(this.nome): this.matricula = 'Não informada';
+
+  @override
+  String toString() {
+    return 'Aluno: $nome, Matrícula: $matricula';
+  }
+}
+
+
+class Contador1 {
+  int _valor = 0;
+
+  void incrementar() {
+    _valor++;
+  }
+  void resetar(){
+    _valor = 0;
+  }
+  int get valor => _valor;
 }
 
 class Node extends LinkedListEntry<Node> {
