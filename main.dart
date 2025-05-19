@@ -424,8 +424,99 @@ print(livro.exibirDetalhes());
   inscrito.email = "marcosplira12@gmail.com";
 
 // 58. Crie uma interface Autenticavel com o método bool autenticar(String senha). Implemente-a na classe Usuario para verificar se a senha é "1234". Exemplo de uso:
-// var user = Usuario();
-// print(user.autenticar('1234')); // true
+ var user = Usuario1();
+ print(user.autenticar("ABCD")); // false
+ print(user.autenticar("1234")); // true
+
+// 59. Crie uma interface Calculavel com o método double calcular(double a, double b). Implemente-a em Soma e Subtracao.
+  double valorA = 10.0;
+  double valorB = 5.0;
+
+  var calculo1 = Soma();
+  print(calculo1.calcular(valorA, valorB));
+
+  var calculo2 = Subtracao();
+  print(calculo2.calcular(valorA, valorB));
+
+// 60. Crie uma classe abstrata Dispositivo com o método abstrato void ligar(). Derive a classe Celular que implementa ligar() exibindo "Celular ligado!". Exemplo de uso: Dispositivo dispositivo = Celular(); dispositivo.ligar(); // Celular ligado!
+   Dispositivo dispositivo = Celular();
+   dispositivo.ligar();
+
+// 61. Crie uma classe abstrata FormaGeometrica com o método abstrato double calcularArea(). Derive Triangulo e Retangulo com implementações específicas.
+   FormaGeometrica forma1 = Triangulo(3.0, 4.0);
+   FormaGeometrica forma2 = Retangulo1(5.0, 2.0);
+
+  print("Área da forma 1: ${forma1.calcularArea()}");
+  print("Área da forma 2: ${forma2.calcularArea()}");
+} 
+
+abstract class FormaGeometrica {
+  double base;
+  double altura;
+
+  FormaGeometrica(this.base, this.altura);
+
+  double calcularArea();
+
+}
+
+class Triangulo extends FormaGeometrica {
+  Triangulo(double base, double altura) : super(base, altura);
+  @override
+  double calcularArea() {
+    return (base / altura) * 1.5;
+  }
+}
+
+class Retangulo1 extends FormaGeometrica {
+  Retangulo1(double base, double altura) : super(base, altura);
+   @override
+   double calcularArea() {
+    return (base / altura) * 2.0;
+   }
+}
+
+
+
+abstract class Dispositivo {
+  void ligar();
+}
+
+class Celular extends Dispositivo {
+  @override
+  void ligar() {
+    print('Celular ligado!');
+  }
+}
+
+abstract class Calculavel {
+  double calcular(double valorA, double valorB);
+}
+
+class Soma implements Calculavel {
+  @override
+  double calcular(double valorA, double valorB) {
+    return valorA + valorB;
+  }
+}
+
+class Subtracao implements Calculavel {
+  @override
+  double calcular(double valorA, double valorB) {
+    return valorA - valorB;
+  }
+}
+
+
+abstract class Autenticavel {
+  bool autenticar(String senha);
+}
+
+class Usuario1 implements Autenticavel {
+   @override
+   bool autenticar(String senha) {
+    return senha == "1234";
+   }
 }
 
 class Usuario {
@@ -441,9 +532,6 @@ class Usuario {
     }
   }
 }
-
-
-
 
 class Retangulo {
   double _largura = 100;
@@ -492,8 +580,6 @@ class Termometro {
   }
 
 }
-
-
 
 class ContaBancaria {
   double _saldo = 0;
