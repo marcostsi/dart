@@ -376,6 +376,195 @@ print(livro.exibirDetalhes());
   print(carro.marca);
   print(carro.velocidadeMaxima);
   print(carro.quantidadePortas);
+
+// 51. Crie uma classe Animal com o método emitirSom(). Derive a classe Gato que sobrescreve emitirSom() para retornar "Miau!".
+  var animal1 = Animal();
+  var animal2 = Gato();
+
+  animal1.emitirSom();
+  animal2.emitirSom();
+
+
+// 52. Crie uma classe Forma com o método calcularArea(). Derive as classes Quadrado (lado) e Circulo (raio) que implementam calcularArea() de formas diferentes. Exemplo de uso: Forma forma1 = Quadrado(5); Forma forma2 = Circulo(3); print(forma1.calcularArea()); // 25 print(forma2.calcularArea()); // ~28.27
+  Forma t1 = Quadrado();
+  Forma t2 = Circulo();
+
+  print("Tarifa do quadrado: R\$${t1.calcularArea()}");
+  print("Tarifa do circulo: R\$${t2.calcularArea()}");
+
+// 53. Crie uma classe Notificacao com o método enviar(). Derive Email e SMS, cada uma implementando enviar() com mensagens específicas (ex: "Email enviado!").
+  Notificacao notificacao1 = Email();
+  Notificacao notificacao2 = SMS();
+  notificacao1.enviar();
+  notificacao2.enviar();
+
+// 54. Crie uma classe ContaBancaria com uma propriedade privada _saldo e métodos públicos depositar(valor) e sacar(valor). O saque só é permitido se houver saldo suficiente. Exemplo de uso: 
+  var conta = ContaBancaria(); 
+  conta.depositar(1000); 
+  conta.sacar(500); // OK 
+  conta.sacar(600); // Erro: Saldo insuficiente
+  conta.mostrarSaldo();
+
+// 55. Crie uma classe Termometro com uma propriedade privada _temperaturaC. Adicione um método ajustarTemperatura(double novaTemp) que só permite valores entre -50 e 100.
+  var termometro = Termometro();
+  termometro.ajustarTemperatura(-50);
+  termometro.ajustarTemperatura(100);
+  termometro.mostrarTemperatura();
+
+// 56. Crie uma classe Retangulo com propriedades privadas _largura e _altura. Use getters para largura e altura e setters que validam valores positivos. Exemplo de uso: var ret = Retangulo(); ret.largura = 10; // OK ret.altura = -5; // Erro: Valor inválido
+  var ret = Retangulo(); 
+  ret.largura = 10; // OK 
+  ret.altura = -5; // Erro: Valor inválido
+  ret._largura = 80;
+  ret._altura = -20;
+
+// 57. Crie uma classe Usuario com uma propriedade privada _email. Use um setter para validar se o email contém @ antes de atribuílo.
+  var inscrito = Usuario();
+  inscrito.email = "marcosplira12gmail.com";
+  inscrito.email = "marcosplira12@gmail.com";
+
+// 58. Crie uma interface Autenticavel com o método bool autenticar(String senha). Implemente-a na classe Usuario para verificar se a senha é "1234". Exemplo de uso:
+// var user = Usuario();
+// print(user.autenticar('1234')); // true
+}
+
+class Usuario {
+  String _email = "";
+  String get email => _email;
+
+  set email(String novoEmail) {
+    if(novoEmail.contains("@")) {
+      _email = novoEmail;
+      print("O email está salvo com sucesso!");
+    } else {
+      print("Erro: o email deve conter o símbolo '@' para ser válido.");
+    }
+  }
+}
+
+
+
+
+class Retangulo {
+  double _largura = 100;
+  double _altura = 0;
+
+  double get largura => _largura;
+  double get altura => _altura;
+
+  set altura(double novaAltura) {
+    if (novaAltura < 0) {
+      print("Erro: altura deve ser um valor positivo.");
+    } else {
+      _altura = novaAltura;
+      print("Altura do retângulo foi ajustado para $_altura metros.");
+    }
+  }
+
+  set largura(double novaLargura) {
+    if (novaLargura <= 0) {
+      print("Erro: a largura deve ser um valor positivo.");
+    } else {
+      _largura = novaLargura;
+      if(_altura > _largura) {
+        _altura = _largura;
+        print("Ajuste automático para $_altura (nova largura). ");
+      } else {
+        print("Largura do retângulo foi ajustada para $_largura metros.");
+      }
+    }
+  }
+}
+
+class Termometro {
+  double _temperaturaC = 0;
+
+  void ajustarTemperatura(double novaTemp) {
+    if (novaTemp >= -50 && novaTemp <= 100) {
+      _temperaturaC = novaTemp;
+      print("Temperatura ajustada para $_temperaturaC °C/F");
+    } else {
+      print("Erro: Temperatura inválida. Insira um valor entre -50 e 100.");
+    }
+  }
+  void mostrarTemperatura() {
+    print("Temperatura atual: $_temperaturaC °C/F");
+  }
+
+}
+
+
+
+class ContaBancaria {
+  double _saldo = 0;
+
+  void depositar(double valor) {
+    if (valor > 0) {
+      _saldo += valor;
+      print("Depósito realizado: R\$ $valor");
+    } else {
+      print("Erro: Valor inválido para depósito.");
+    }
+  }
+  void sacar(double valor) {
+    if (valor > _saldo) {
+      print("Erro: Saldo insuficiente.");
+    } else if(valor <= 0) {
+      print("Erro: Valor inválido para saque.");
+    } else {
+      _saldo -= valor;
+      print("Saldo realizado: R\$ $valor");
+    }
+  }
+  void mostrarSaldo() {
+    print("Saldo atual: R\$ $_saldo");
+  }
+}
+
+abstract class Notificacao {
+  void enviar();
+}
+
+class Email extends Notificacao {
+  @override
+  void enviar() {
+    print("Email enviado!");
+  }
+}
+
+class SMS extends Notificacao {
+  @override
+  void enviar() {
+    print("Email enviado!");
+  }
+}
+
+abstract class Forma {
+  double calcularArea();
+}
+class Quadrado extends Forma {
+  @override
+  double calcularArea() {
+    return 25;
+  }
+}
+class Circulo extends Forma {
+  @override
+  double calcularArea() {
+    return 28.27;
+  }
+}
+
+class Animal {
+  void emitirSom() {
+    print("Som generico do animal");
+  }
+}
+class Gato extends Animal {
+  @override
+  void emitirSom() {
+    print("Som do gato: Miau!");
+  }
 }
 
 class Veiculo {
@@ -412,7 +601,6 @@ class Aluno {
     return 'Aluno: $nome, Matrícula: $matricula';
   }
 }
-
 
 class Contador1 {
   int _valor = 0;
