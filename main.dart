@@ -289,7 +289,7 @@ void main() {
 
 // 38. Verifique se o mapa var produtos = {'celular': 1500, 'notebook': 3000} contém a chave 'tablet'. Se não existir, adicione-a com valor 1000.
   var produtos = {
-    'celular': 150,
+    'celular': 1500,
     'notebook': 3000
   };
   if (!produtos.containsKey('tablet')) {
@@ -366,7 +366,7 @@ print(livro.exibirDetalhes());
 
 // 49. Crie uma classe Produto com as propriedades nome e preco. Use um construtor para inicializar nome como obrigatório e preco com valor padrão 0.0 se não for fornecido.
   var produto1 = Produto("Banana", 45.99);
-  var produto2 = Produto("Banana é bom.");
+  var produto2 = Produto("Maçã");
 
   print("Produto 1: ${produto1.nomedoProduto}, Preço: ${produto1.preco}");
   print("Produto 2: ${produto2.nomedoProduto}, Preço: ${produto2.preco}");
@@ -464,12 +464,10 @@ try {
   int? letra1;
   try {
     letra1 = int.parse(texto);
+    print("Valor de letra: $letra1");
   } catch (e) {
     print("Erro: Não foi possível converter o texto para inteiro.");
-  } finally {
-    print("Fim do programa.");
   }
-  print("Valor de letra: $letra1");
 
 // 64. Dada uma lista com três elementos, o código tenta acessar o elemento de índice 5. Implemente o tratamento necessário para que o acesso inválido não encerre o programa.
   List lista1 = [1, 2, 3];
@@ -485,7 +483,7 @@ try {
     validarEmail(email22);
     print("Email válido! Cadastro permitido.");
   } on EmailInvalidoException catch (e) {
-    print("Erro: ${e.errorMessage()}");
+    print("Erro: $e");
   } catch (e) {
     print("Erro inesperado: $e");
   }
@@ -509,7 +507,7 @@ processarEntrada("5");
 }
 
 class EmailInvalidoException implements Exception {
-  String errorMessage() => "O e-mail digitado é inválido. Deve conter o caractere '@'.";
+  String toString() => "O e-mail digitado é inválido. Deve conter o caractere '@'.";
 }
 
 void validarEmail(String email) {
@@ -532,7 +530,7 @@ class Triangulo extends FormaGeometrica {
   Triangulo(double base, double altura) : super(base, altura);
   @override
   double calcularArea() {
-    return (base / altura) * 1.5;
+    return (base * altura) / 2;
   }
 }
 
@@ -540,7 +538,7 @@ class Retangulo1 extends FormaGeometrica {
   Retangulo1(double base, double altura) : super(base, altura);
    @override
    double calcularArea() {
-    return (base / altura) * 2.0;
+    return base * altura;
    }
 }
 
