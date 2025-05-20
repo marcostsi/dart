@@ -53,7 +53,7 @@ void main() {
 
 // 11. Crie um mapa (Map) para associar nomes de frutas a seus preços e acesse o preço de uma fruta específica.
   Map<String, double> nomeFrutas = {
-    'Acelora': 10,
+    'Acerola': 10,
     'Maça': 2.50,
     'Banana': 1.80,
     'Laranja': 2.00,
@@ -161,7 +161,7 @@ void main() {
 // 22. Some e exiba todos os números pares de 1 a 100 usando um loop.
   int somaPares = 0;
   for (int i = 1; i <= 100; i++) {
-    if (i % 2 != 0) {
+    if (i % 2 == 0) {
       somaPares += i;
       print(i);
     }
@@ -172,7 +172,7 @@ void main() {
   stdout.write('Digite um número para ver a tabuada: ');
   int numero5 = int.parse(stdin.readLineSync()!);
   print('\nTabuada do $numero5:');
-  for (int i = 1; i < 10; i++) {
+  for (int i = 1; i <= 10; i++) {
     print('$numero5 x $i = ${numero5 * i}');
   }
 
@@ -448,7 +448,75 @@ print(livro.exibirDetalhes());
 
   print("Área da forma 1: ${forma1.calcularArea()}");
   print("Área da forma 2: ${forma2.calcularArea()}");
-} 
+
+// 2.6 Tratamento de Erros
+// 62. Um programa realiza a divisão de dois números inteiros, mas o divisor pode ser zero. Modifique o código para que o usuário não veja uma mensagem de erro do sistema caso isso aconteça.
+int entradaA = int.parse(stdin.readLineSync()!);
+int entradaB = int.parse(stdin.readLineSync()!);
+try {
+  int resultado = entradaA ~/ entradaB;
+  print("O número é $resultado");
+} catch (e) {
+  print("Erro: não é possível dividir por zero.");
+}
+// 63. Um texto digitado pelo usuário deve ser convertido para inteiro, mas pode conter letras ou símbolos. Garanta que, se a conversão falhar, o programa não seja interrompido abruptamente.
+  String texto = "abc";
+  int? letra1;
+  try {
+    letra1 = int.parse(texto);
+  } catch (e) {
+    print("Erro: Não foi possível converter o texto para inteiro.");
+  } finally {
+    print("Fim do programa.");
+  }
+  print("Valor de letra: $letra1");
+
+// 64. Dada uma lista com três elementos, o código tenta acessar o elemento de índice 5. Implemente o tratamento necessário para que o acesso inválido não encerre o programa.
+  List lista1 = [1, 2, 3];
+  try {
+    print("Produto selecionado: ${lista1[5]}");
+  } catch (e) {
+    print("Erro: índice fora do intervalo da lista.");
+  }
+
+// 65. Um sistema de cadastro exige que o e-mail digitado contenha o caractere "@". Caso contrário, uma exceção personalizada deve ser lançada e tratada.
+  String email22 = "usuario.example.com";
+  try {
+    validarEmail(email22);
+    print("Email válido! Cadastro permitido.");
+  } on EmailInvalidoException catch (e) {
+    print("Erro: ${e.errorMessage()}");
+  } catch (e) {
+    print("Erro inesperado: $e");
+  }
+
+// 66. Uma função recebe uma string, converte para inteiro e usa esse valor como índice de uma lista. Trate as possíveis exceções de conversão e de acesso fora do intervalo.
+  void processarEntrada(String entrada) {
+    List lista = [10, 20, 30];
+    try{
+      int numero12 = int.parse(entrada);
+      print("O valor converido com sucesso: $numero12");
+      print("Elemento da lista: ${lista[numero12]}");
+    } on FormatException {
+      print("Erro: o valor fornecido não é um número válido.");
+    } on RangeError {
+      print("Erro: índice fora do intervalo da lista.");
+    }
+}
+processarEntrada("1");   
+processarEntrada("abc"); 
+processarEntrada("5");
+}
+
+class EmailInvalidoException implements Exception {
+  String errorMessage() => "O e-mail digitado é inválido. Deve conter o caractere '@'.";
+}
+
+void validarEmail(String email) {
+    if (!email.contains('@') || !email.split('@').last.contains('.')) {
+    throw EmailInvalidoException();
+    }
+}
 
 abstract class FormaGeometrica {
   double base;
